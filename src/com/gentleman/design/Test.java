@@ -1,26 +1,22 @@
 package com.gentleman.design;
 
-import com.gentleman.design.singleton.SingleTonDemo1;
-import com.gentleman.design.singleton.SingleTonDemo2;
-import com.gentleman.design.singleton.SingleTonDemo3;
+import com.gentleman.design.factory.Product;
+import com.gentleman.design.factory.fatorymethod.Factory;
+import com.gentleman.design.factory.fatorymethod.ConcreteFactory1;
+import com.gentleman.design.factory.simplefactory.SimpleFactory;
 
 public class Test {
 
     public static void main(String[] args) {
-        Thread t1 = new MyThread();
-        Thread t2 = new MyThread();
+        SimpleFactory simpleFactory = new SimpleFactory();
+        Product product = simpleFactory.createProduct(2);
+        System.out.println(product.productDetail());
 
-        t1.start();
-        t2.start();
-
+        Factory factory;
+        factory = new ConcreteFactory1();
+        System.out.println(factory.createProduct().productDetail());
     }
 
 
 }
 
-class MyThread extends Thread {
-    @Override
-    public void run() {
-        System.out.println("thread:" + SingleTonDemo3.getInstance().toString());
-    }
-}
